@@ -89,7 +89,7 @@
   --secondary: #0f1b34; /* Darker secondary */
   --secondary-foreground: #ffffff; /* White secondary text */
   --muted: #1e2a44; /* Slightly lighter muted for better contrast */
-  --muted-foreground: #94a3b8; /* Balanced gray-blue muted text */
+  --muted-foreground: #cbd5e1; /* Lighter gray for better contrast in dark mode */
   --accent: #29abe2; /* Keep cyan accent */
   --accent-foreground: #ffffff; /* White text on accent */
   --destructive: #d50000; /* Keep red destructive */
@@ -110,7 +110,7 @@
   --sidebar-accent-foreground: #ffffff; /* White sidebar accent text */
   --sidebar-border: #1e2a44; /* Darker sidebar border */
   --sidebar-ring: #29abe2; /* Cyan sidebar ring */
-  --chart-background: #0f1b34; /* Darker chart background */
+  --chart-background: #1e2a44; /* Slightly lighter chart background for better text contrast */
   --footer-background: #1e293b; /* Consistent dark slate */
   --disclaimer-text: #94a3b8; /* Consistent slate gray */
   
