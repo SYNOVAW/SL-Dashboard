@@ -55,39 +55,39 @@
 }
 
 .dark {
-  --background: #1d3c78; /* Deep blue background in dark mode */
+  --background: #0a1224; /* Blue-black background in dark mode */
   --foreground: #ffffff; /* White text in dark mode */
-  --card: #2a4a8a; /* Darker blue card background */
+  --card: #0f1b34; /* Blue-black card background */
   --card-foreground: #ffffff; /* White card text */
-  --popover: #1d3c78; /* Dark popover */
+  --popover: #0f1b34; /* Dark popover */
   --popover-foreground: #ffffff; /* White popover text */
   --primary: #29abe2; /* Cyan primary in dark mode */
-  --primary-foreground: #1d3c78; /* Dark text on primary */
-  --secondary: #2a4a8a; /* Darker secondary */
+  --primary-foreground: #0a1224; /* Dark text on primary */
+  --secondary: #0f1b34; /* Darker secondary */
   --secondary-foreground: #ffffff; /* White secondary text */
-  --muted: #2a4a8a; /* Darker muted */
+  --muted: #0f1b34; /* Darker muted */
   --muted-foreground: #b0b4bc; /* Light gray muted text */
   --accent: #29abe2; /* Keep cyan accent */
   --accent-foreground: #ffffff; /* White text on accent */
   --destructive: #d50000; /* Keep red destructive */
   --destructive-foreground: #ffffff; /* White destructive text */
-  --border: #2a4a8a; /* Darker borders */
-  --input: #2a4a8a; /* Darker input */
+  --border: #1e2a44; /* Darker borders */
+  --input: #0f1b34; /* Darker input */
   --ring: #29abe2; /* Cyan focus ring */
   --chart-1: #29abe2; /* Cyan charts in dark mode */
   --chart-2: #00c853; /* Green positive */
   --chart-3: #d50000; /* Red negative */
   --chart-4: #ff9800; /* Orange neutral */
   --chart-5: #ffffff; /* White highlights */
-  --sidebar: #1d3c78; /* Dark sidebar */
+  --sidebar: #0a1224; /* Dark sidebar */
   --sidebar-foreground: #ffffff; /* White sidebar text */
   --sidebar-primary: #29abe2; /* Cyan sidebar primary */
   --sidebar-primary-foreground: #1d3c78; /* Dark sidebar primary text */
   --sidebar-accent: #29abe2; /* Cyan sidebar accent */
   --sidebar-accent-foreground: #ffffff; /* White sidebar accent text */
-  --sidebar-border: #2a4a8a; /* Darker sidebar border */
+  --sidebar-border: #1e2a44; /* Darker sidebar border */
   --sidebar-ring: #29abe2; /* Cyan sidebar ring */
-  --chart-background: #2a4a8a; /* Darker chart background */
+  --chart-background: #0f1b34; /* Darker chart background */
   --footer-background: #2e2e38; /* Keep dark footer */
   --disclaimer-text: #cccccc; /* Keep light disclaimer text */
 }
