@@ -56,17 +56,17 @@
 
 .dark {
   --background: #0a1224; /* Blue-black background in dark mode */
-  --foreground: #ffffff; /* White text in dark mode */
+  --foreground: #e6edf7; /* Soft white text in dark mode */
   --card: #ffffff; /* White card background */
   --card-foreground: #1d3c78; /* Deep Blue text on cards */
   --popover: #0f1b34; /* Dark popover */
-  --popover-foreground: #ffffff; /* White popover text */
+  --popover-foreground: #e6edf7; /* Soft white popover text */
   --primary: #29abe2; /* Cyan primary in dark mode */
   --primary-foreground: #0a1224; /* Dark text on primary */
   --secondary: #0f1b34; /* Darker secondary */
   --secondary-foreground: #ffffff; /* White secondary text */
   --muted: #0f1b34; /* Darker muted */
-  --muted-foreground: #b0b4bc; /* Light gray muted text */
+  --muted-foreground: #b8c1d1; /* Light gray-blue muted text */
   --accent: #29abe2; /* Keep cyan accent */
   --accent-foreground: #ffffff; /* White text on accent */
   --destructive: #d50000; /* Keep red destructive */
