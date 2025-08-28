@@ -34,7 +34,7 @@ export function SummaryZone() {
   }
 
   return (
-    <Card className="w-full bg-card text-foreground soft-shadow fade-in">
+    <Card className="w-full bg-card soft-shadow fade-in">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-2xl font-bold">
           Market Overview
@@ -67,7 +67,7 @@ export function SummaryZone() {
             <div className="text-sm">
               <span className="text-muted-foreground">Last update:</span>
               <br />
-              <span className="font-medium text-foreground">{lastUpdate}</span>
+              <span className="font-medium text-card-foreground">{lastUpdate}</span>
             </div>
             <div className="text-sm">
               <span className="text-muted-foreground">Next refresh:</span>
@@ -81,7 +81,7 @@ export function SummaryZone() {
           <div className="flex items-start gap-2">
             <div className="w-2 h-2 rounded-full bg-[var(--highlight)] mt-2 flex-shrink-0 glow-cyan" />
             <div>
-              <h4 className="text-sm font-semibold text-foreground mb-1">Market Bias</h4>
+              <h4 className="text-sm font-semibold text-card-foreground mb-1">Market Bias</h4>
               <p className="text-sm text-muted-foreground">{biasNote}</p>
             </div>
           </div>

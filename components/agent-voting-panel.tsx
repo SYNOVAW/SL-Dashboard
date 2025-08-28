@@ -64,7 +64,7 @@ export function AgentVotingPanel() {
   return (
     <Card className="w-full bg-card border-border/20 soft-shadow rounded-xl">
       <CardHeader className="pb-4">
-        <CardTitle className="flex items-center gap-2 text-foreground font-semibold">
+        <CardTitle className="flex items-center gap-2 font-semibold">
           Agent Voting Panel
           <Badge variant="outline" className="ml-auto bg-[var(--highlight)]/10 text-[var(--highlight)] border-[var(--highlight)]/20">
             4 Agents Active
@@ -82,7 +82,7 @@ export function AgentVotingPanel() {
                       <div className="flex items-center gap-3">
                         <div className="p-2 rounded-lg bg-[var(--highlight)]/10 text-[var(--highlight)]">{agent.icon}</div>
                         <div>
-                          <h4 className="font-medium text-foreground">{agent.name}</h4>
+                          <h4 className="font-medium text-card-foreground">{agent.name}</h4>
                           <Badge
                             variant="outline"
                             className={`${getSentimentBadgeColor(agent.sentiment)} text-xs font-inter`}
@@ -91,7 +91,7 @@ export function AgentVotingPanel() {
                           </Badge>
                         </div>
                       </div>
-                      <CircularGauge value={agent.percentage} size={64} strokeWidth={8} showPercentText={false} label={<span className="text-xs text-foreground font-semibold">{agent.percentage}%</span>} sublabel={<span className="text-[10px] text-muted-foreground">Vote</span>} />
+                      <CircularGauge value={agent.percentage} size={64} strokeWidth={8} showPercentText={false} label={<span className="text-xs text-card-foreground font-semibold">{agent.percentage}%</span>} sublabel={<span className="text-[10px] text-muted-foreground">Vote</span>} />
                     </div>
                     <div className="relative">
                       <div className="w-full bg-muted rounded-full h-2">
@@ -104,7 +104,7 @@ export function AgentVotingPanel() {
                   </div>
                 </TooltipTrigger>
                 <TooltipContent side="bottom" className="max-w-xs bg-card border-border/20 soft-shadow rounded-lg">
-                  <p className="text-sm text-foreground">{agent.reasoning}</p>
+                  <p className="text-sm text-card-foreground">{agent.reasoning}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>

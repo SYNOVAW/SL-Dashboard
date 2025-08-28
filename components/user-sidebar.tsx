@@ -43,7 +43,7 @@ export function UserSidebar() {
               <User className="h-5 w-5 text-[var(--highlight)]" />
             </div>
             <div>
-              <h4 className="font-medium text-foreground">Investor</h4>
+              <h4 className="font-medium text-card-foreground">Investor</h4>
               <p className="text-sm text-muted-foreground">Premium Member</p>
             </div>
           </div>
@@ -51,7 +51,7 @@ export function UserSidebar() {
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Portfolio Value</span>
-              <span className="font-medium text-foreground">$125,000</span>
+              <span className="font-medium text-card-foreground">$125,000</span>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-muted-foreground">Today's P&L</span>
@@ -99,7 +99,7 @@ export function UserSidebar() {
           <div className="p-3 bg-[var(--highlight)]/10 rounded-lg border border-[var(--highlight)]/20">
             <div className="flex items-center gap-2 mb-1">
               <div className="w-2 h-2 rounded-full bg-[var(--highlight)]" />
-              <span className="text-sm font-medium text-foreground">High Volatility Alert</span>
+              <span className="text-sm font-medium text-card-foreground">High Volatility Alert</span>
             </div>
             <p className="text-xs text-muted-foreground">Market volatility increased by 15% in the last hour</p>
           </div>
@@ -107,7 +107,7 @@ export function UserSidebar() {
           <div className="p-3 bg-[color-mix(in_srgb,var(--highlight)_10%,transparent)] rounded-lg border border-[var(--highlight)]/20">
             <div className="flex items-center gap-2 mb-1">
               <div className="w-2 h-2 rounded-full bg-[var(--highlight)]" />
-              <span className="text-sm font-medium text-foreground">Sentiment Shift</span>
+              <span className="text-sm font-medium text-card-foreground">Sentiment Shift</span>
             </div>
             <p className="text-xs text-muted-foreground">Overall sentiment improved to Positive</p>
           </div>

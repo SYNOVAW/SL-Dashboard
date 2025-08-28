@@ -89,7 +89,7 @@ export function InsightTabs() {
               {newsItems.map((item, index) => (
                 <div key={index} className="p-4 border border-border rounded-lg">
                   <div className="flex items-start justify-between mb-2">
-                    <h4 className="font-medium text-foreground">{item.title}</h4>
+                    <h4 className="font-medium text-card-foreground">{item.title}</h4>
                     <div className="flex items-center gap-2">
                       <Badge
                         variant="outline"
@@ -119,11 +119,11 @@ export function InsightTabs() {
               {financialMetrics.map((item, index) => (
                 <div key={index} className="p-4 border border-border rounded-lg">
                   <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-medium text-foreground">{item.metric}</h4>
+                    <h4 className="font-medium text-card-foreground">{item.metric}</h4>
                     <DollarSign className="h-4 w-4 text-muted-foreground" />
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold text-foreground">{item.value}</span>
+                    <span className="text-2xl font-bold text-card-foreground">{item.value}</span>
                     <Badge
                       variant="outline"
                       className={
@@ -143,18 +143,18 @@ export function InsightTabs() {
           <TabsContent value="forecasts" className="space-y-4">
             <div className="space-y-4">
               <div className="p-4 bg-accent/10 rounded-lg border border-accent/20">
-                <h4 className="font-medium text-foreground mb-2">Price Target Range</h4>
-                <div className="text-2xl font-bold text-foreground">$620 - $700</div>
+                <h4 className="font-medium text-card-foreground mb-2">Price Target Range</h4>
+                <div className="text-2xl font-bold text-card-foreground">$620 - $700</div>
                 <p className="text-sm text-muted-foreground">Average target: $662.50 (Q3 2025)</p>
               </div>
 
               {forecasts.map((forecast, index) => (
                 <div key={index} className="flex items-center justify-between p-3 border border-border rounded-lg">
                   <div>
-                    <h5 className="font-medium text-foreground">{forecast.analyst}</h5>
+                    <h5 className="font-medium text-card-foreground">{forecast.analyst}</h5>
                     <p className="text-sm text-muted-foreground">{forecast.timeframe}</p>
                   </div>
-                  <div className="text-lg font-bold text-foreground">{forecast.target}</div>
+                  <div className="text-lg font-bold text-card-foreground">{forecast.target}</div>
                 </div>
               ))}
             </div>
