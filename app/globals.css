@@ -57,8 +57,8 @@
 .dark {
   --background: #0a1224; /* Blue-black background in dark mode */
   --foreground: #ffffff; /* White text in dark mode */
-  --card: #0f1b34; /* Blue-black card background */
-  --card-foreground: #ffffff; /* White card text */
+  --card: #ffffff; /* White card background */
+  --card-foreground: #1d3c78; /* Deep Blue text on cards */
   --popover: #0f1b34; /* Dark popover */
   --popover-foreground: #ffffff; /* White popover text */
   --primary: #29abe2; /* Cyan primary in dark mode */
