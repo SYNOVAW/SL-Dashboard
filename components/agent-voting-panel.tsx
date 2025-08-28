@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Brain, Newspaper, TrendingUp, Building } from "lucide-react"
+import { CircularGauge } from "@/components/ui/circular-gauge"
 
 interface AgentVote {
   name: string
@@ -90,10 +91,7 @@ export function AgentVotingPanel() {
                           </Badge>
                         </div>
                       </div>
-                      <div className="text-right">
-                        <div className="text-lg font-bold text-foreground">{agent.percentage}%</div>
-                        <div className="text-xs text-muted-foreground">Confidence</div>
-                      </div>
+                      <CircularGauge value={agent.percentage} size={64} strokeWidth={8} showPercentText={false} label={<span className="text-xs text-foreground font-semibold">{agent.percentage}%</span>} sublabel={<span className="text-[10px] text-muted-foreground">Vote</span>} />
                     </div>
                     <div className="relative">
                       <div className="w-full bg-muted rounded-full h-2">

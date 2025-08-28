@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
+import { CircularGauge } from "@/components/ui/circular-gauge"
 import { TrendingUp, TrendingDown, Minus, Clock } from "lucide-react"
 
 export function SummaryZone() {
@@ -33,69 +34,55 @@ export function SummaryZone() {
   }
 
   return (
-    <Card className="w-full bg-primary text-primary-foreground soft-shadow fade-in">
+    <Card className="w-full bg-card text-foreground soft-shadow fade-in">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-2xl font-bold">
-          Market Summary
-          <Clock className="h-5 w-5 text-white/70" />
+          Market Overview
+          <Clock className="h-5 w-5 text-muted-foreground" />
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Overall Sentiment */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+          {/* Judgment & Action */}
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <h3 className="text-sm font-medium text-white/70">Overall Sentiment</h3>
-            </div>
-            <div className="flex items-center gap-3">
               {getSentimentIcon(overallSentiment)}
-              <Badge variant="outline" className={`${getSentimentColor(overallSentiment)} font-medium border-2`}>
+              <Badge variant="outline" className={`${getSentimentColor(overallSentiment)} font-medium`}>
                 {overallSentiment}
               </Badge>
+              <Badge className="bg-[var(--highlight)]/10 text-[var(--highlight)] border-[var(--highlight)]/20" variant="outline">
+                Suggested: Hold
+              </Badge>
             </div>
+            <div className="text-sm text-muted-foreground">Bias: {biasNote}</div>
           </div>
 
-          <div className="space-y-3">
-            <h3 className="text-sm font-medium text-white/70">Confidence Score</h3>
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-4xl font-bold text-white">{confidenceScore}%</span>
-                <span className="text-sm text-white/70">High Confidence</span>
-              </div>
-              <div className="relative">
-                <Progress value={confidenceScore} className="h-3 bg-white/20 glow-cyan" />
-                <div
-                  className="absolute top-0 left-0 h-3 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] rounded-full transition-all duration-700"
-                  style={{ width: `${confidenceScore}%` }}
-                />
-              </div>
-            </div>
+          {/* Confidence Ring */}
+          <div className="flex justify-center">
+            <CircularGauge value={confidenceScore} size={120} strokeWidth={10} label={<span className="text-sm">Confidence</span>} sublabel={<span className="text-xs">High</span>} />
           </div>
 
           {/* Time Context */}
           <div className="space-y-3">
-            <h3 className="text-sm font-medium text-white/70">Update Status</h3>
-            <div className="space-y-1">
-              <div className="text-sm">
-                <span className="text-white/70">Last update:</span>
-                <br />
-                <span className="font-medium text-white">{lastUpdate}</span>
-              </div>
-              <div className="text-sm">
-                <span className="text-white/70">Next refresh:</span>
-                <br />
-                <span className="font-medium text-[var(--accent)]">{nextRefresh}</span>
-              </div>
+            <div className="text-sm">
+              <span className="text-muted-foreground">Last update:</span>
+              <br />
+              <span className="font-medium text-foreground">{lastUpdate}</span>
+            </div>
+            <div className="text-sm">
+              <span className="text-muted-foreground">Next refresh:</span>
+              <br />
+              <span className="font-medium text-[var(--highlight)]">{nextRefresh}</span>
             </div>
           </div>
         </div>
 
-        <div className="mt-6 p-4 bg-white/10 rounded-xl border border-[#29ABE2]/30 backdrop-blur-sm">
+        <div className="mt-6 p-4 bg-muted/30 rounded-xl border border-border/30">
           <div className="flex items-start gap-2">
-            <div className="w-2 h-2 rounded-full bg-[var(--accent)] mt-2 flex-shrink-0 glow-cyan" />
+            <div className="w-2 h-2 rounded-full bg-[var(--highlight)] mt-2 flex-shrink-0 glow-cyan" />
             <div>
-              <h4 className="text-sm font-semibold text-white mb-1">Market Bias</h4>
-              <p className="text-sm text-white/80">{biasNote}</p>
+              <h4 className="text-sm font-semibold text-foreground mb-1">Market Bias</h4>
+              <p className="text-sm text-muted-foreground">{biasNote}</p>
             </div>
           </div>
         </div>
