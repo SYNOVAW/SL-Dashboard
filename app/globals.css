@@ -7,7 +7,7 @@
   /* Updated color palette to match exact specifications from design guide */
   --background: #ffffff; /* White background */
   --foreground: #1d3c78; /* Deep Blue primary */
-  --card: #d9dbe1; /* Silver Gray card background */
+  --card: #f8fafc; /* Light gray card background for light mode */
   --card-foreground: #1d3c78; /* Deep Blue text on cards */
   --popover: #ffffff; /* White popover background */
   --popover-foreground: #1d3c78; /* Deep Blue popover text */
@@ -80,16 +80,16 @@
 .dark {
   --background: #0a1224; /* Blue-black background in dark mode */
   --foreground: #e6edf7; /* Soft white text in dark mode */
-  --card: #ffffff; /* White card background */
-  --card-foreground: #1d3c78; /* Deep Blue text on cards */
+  --card: #0f1b34; /* Dark blue card background */
+  --card-foreground: #e6edf7; /* Light text on dark cards */
   --popover: #0f1b34; /* Dark popover */
   --popover-foreground: #e6edf7; /* Soft white popover text */
   --primary: #29abe2; /* Cyan primary in dark mode */
   --primary-foreground: #0a1224; /* Dark text on primary */
   --secondary: #0f1b34; /* Darker secondary */
   --secondary-foreground: #ffffff; /* White secondary text */
-  --muted: #0f1b34; /* Darker muted */
-  --muted-foreground: #b8c1d1; /* Light gray-blue muted text */
+  --muted: #1e2a44; /* Slightly lighter muted for better contrast */
+  --muted-foreground: #94a3b8; /* Balanced gray-blue muted text */
   --accent: #29abe2; /* Keep cyan accent */
   --accent-foreground: #ffffff; /* White text on accent */
   --destructive: #d50000; /* Keep red destructive */
