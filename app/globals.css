@@ -1,0 +1,194 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color palette to match exact specifications from design guide */
+  --background: #ffffff; /* White background */
+  --foreground: #1d3c78; /* Deep Blue primary */
+  --card: #d9dbe1; /* Silver Gray card background */
+  --card-foreground: #1d3c78; /* Deep Blue text on cards */
+  --popover: #ffffff; /* White popover background */
+  --popover-foreground: #1d3c78; /* Deep Blue popover text */
+  --primary: #1d3c78; /* Deep Blue primary */
+  --primary-foreground: #ffffff; /* White text on primary */
+  --secondary: #d9dbe1; /* Silver Gray secondary */
+  --secondary-foreground: #1d3c78; /* Deep Blue on secondary */
+  --muted: #d9dbe1; /* Silver Gray muted */
+  --muted-foreground: #6b7280; /* Darker gray for muted text */
+  --accent: #29abe2; /* Highlight Cyan accent */
+  --accent-foreground: #ffffff; /* White on accent */
+  --destructive: #d50000; /* Red for negative/bearish */
+  --destructive-foreground: #ffffff; /* White on destructive */
+  --border: #d9dbe1; /* Silver Gray borders */
+  --input: #ffffff; /* White input background */
+  --ring: #29abe2; /* Cyan focus ring */
+
+  /* Updated chart colors to match sentiment color specifications */
+  --chart-1: #1d3c78; /* Deep Blue for price line */
+  --chart-2: #00c853; /* Green for positive/bullish */
+  --chart-3: #d50000; /* Red for negative/bearish */
+  --chart-4: #ff9800; /* Orange for neutral/mixed */
+  --chart-5: #29abe2; /* Cyan for highlights */
+
+  /* Updated radius to 12px as specified in design guide */
+  --radius: 0.75rem; /* 12px border radius */
+
+  --sidebar: #ffffff; /* White sidebar background */
+  --sidebar-foreground: #1d3c78; /* Deep Blue sidebar text */
+  --sidebar-primary: #1d3c78; /* Deep Blue sidebar primary */
+  --sidebar-primary-foreground: #ffffff; /* White on sidebar primary */
+  --sidebar-accent: #29abe2; /* Cyan sidebar accent */
+  --sidebar-accent-foreground: #ffffff; /* White on sidebar accent */
+  --sidebar-border: #d9dbe1; /* Silver Gray sidebar border */
+  --sidebar-ring: #29abe2; /* Cyan sidebar focus ring */
+
+  /* Added custom colors for specific sentiment states */
+  --positive: #00c853; /* Green for bullish sentiment */
+  --negative: #d50000; /* Red for bearish sentiment */
+  --neutral: #ff9800; /* Orange for mixed sentiment */
+  --highlight: #29abe2; /* Cyan for highlights and active states */
+  --chart-background: #f5f6fa; /* Light gray for chart backgrounds */
+  --footer-background: #2e2e38; /* Dark gray for footer */
+  --disclaimer-text: #cccccc; /* Light gray for disclaimer text */
+}
+
+.dark {
+  --background: #1d3c78; /* Deep blue background in dark mode */
+  --foreground: #ffffff; /* White text in dark mode */
+  --card: #2a4a8a; /* Darker blue card background */
+  --card-foreground: #ffffff; /* White card text */
+  --popover: #1d3c78; /* Dark popover */
+  --popover-foreground: #ffffff; /* White popover text */
+  --primary: #29abe2; /* Cyan primary in dark mode */
+  --primary-foreground: #1d3c78; /* Dark text on primary */
+  --secondary: #2a4a8a; /* Darker secondary */
+  --secondary-foreground: #ffffff; /* White secondary text */
+  --muted: #2a4a8a; /* Darker muted */
+  --muted-foreground: #b0b4bc; /* Light gray muted text */
+  --accent: #29abe2; /* Keep cyan accent */
+  --accent-foreground: #ffffff; /* White text on accent */
+  --destructive: #d50000; /* Keep red destructive */
+  --destructive-foreground: #ffffff; /* White destructive text */
+  --border: #2a4a8a; /* Darker borders */
+  --input: #2a4a8a; /* Darker input */
+  --ring: #29abe2; /* Cyan focus ring */
+  --chart-1: #29abe2; /* Cyan charts in dark mode */
+  --chart-2: #00c853; /* Green positive */
+  --chart-3: #d50000; /* Red negative */
+  --chart-4: #ff9800; /* Orange neutral */
+  --chart-5: #ffffff; /* White highlights */
+  --sidebar: #1d3c78; /* Dark sidebar */
+  --sidebar-foreground: #ffffff; /* White sidebar text */
+  --sidebar-primary: #29abe2; /* Cyan sidebar primary */
+  --sidebar-primary-foreground: #1d3c78; /* Dark sidebar primary text */
+  --sidebar-accent: #29abe2; /* Cyan sidebar accent */
+  --sidebar-accent-foreground: #ffffff; /* White sidebar accent text */
+  --sidebar-border: #2a4a8a; /* Darker sidebar border */
+  --sidebar-ring: #29abe2; /* Cyan sidebar ring */
+  --chart-background: #2a4a8a; /* Darker chart background */
+  --footer-background: #2e2e38; /* Keep dark footer */
+  --disclaimer-text: #cccccc; /* Keep light disclaimer text */
+}
+
+/* Updated font configuration to use Inter and Noto Sans JP as specified */
+@theme inline {
+  --font-sans: "Inter", "Noto Sans JP", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Added custom color tokens for sentiment-specific styling */
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+  --color-neutral: var(--neutral);
+  --color-highlight: var(--highlight);
+  --color-chart-background: var(--chart-background);
+  --color-footer-background: var(--footer-background);
+  --color-disclaimer-text: var(--disclaimer-text);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* Added typography hierarchy as specified in design guide */
+  h1 {
+    @apply text-3xl font-bold; /* 28-32px, Bold for Summary Title */
+  }
+
+  h2 {
+    @apply text-xl font-semibold; /* 20-22px, Semi-Bold for Agent Labels */
+  }
+
+  .body-text {
+    @apply text-base; /* 14-16px, Regular for body text */
+  }
+
+  .caption {
+    @apply text-xs font-light; /* 12px, Light for disclaimers */
+  }
+
+  /* Added animation classes for smooth transitions */
+  .fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 20px rgba(41, 171, 226, 0.2);
+  }
+
+  .soft-shadow {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
