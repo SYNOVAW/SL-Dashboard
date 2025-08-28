@@ -74,34 +74,35 @@ export function VisualDataLayer() {
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
                 <XAxis
                   dataKey="date"
-                  tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
+                  tick={{ fontSize: 12, fill: "hsl(var(--foreground))" }}
                   axisLine={{ stroke: "hsl(var(--border))" }}
                 />
                 <YAxis
-                  tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
+                  tick={{ fontSize: 12, fill: "hsl(var(--foreground))" }}
                   axisLine={{ stroke: "hsl(var(--border))" }}
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "hsl(var(--surface))",
+                    backgroundColor: "hsl(var(--card))",
+                    color: "hsl(var(--card-foreground))",
                     border: "1px solid hsl(var(--border))",
                     borderRadius: "12px",
                     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
                     fontFamily: "Inter, sans-serif",
                   }}
                 />
-                <Line type="monotone" dataKey="price" stroke="#1D3C78" strokeWidth={3} dot={{ fill: "#1D3C78", strokeWidth: 2, r: 5 }} />
+                <Line type="monotone" dataKey="price" stroke="hsl(var(--primary))" strokeWidth={3} dot={{ fill: "hsl(var(--primary))", strokeWidth: 2, r: 5 }} />
                 <Line
                   type="monotone"
                   dataKey="sma20"
-                  stroke="#00C853"
+                  stroke="hsl(var(--positive))"
                   strokeWidth={2}
                   strokeDasharray="2 4"
                 />
                 <Line
                   type="monotone"
                   dataKey="sma50"
-                  stroke="#FF9800"
+                  stroke="hsl(var(--neutral))"
                   strokeWidth={2}
                   strokeDasharray="5 5"
                 />
@@ -119,23 +120,24 @@ export function VisualDataLayer() {
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
                 <XAxis
                   dataKey="date"
-                  tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
+                  tick={{ fontSize: 12, fill: "hsl(var(--foreground))" }}
                   axisLine={{ stroke: "hsl(var(--border))" }}
                 />
                 <YAxis
-                  tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
+                  tick={{ fontSize: 12, fill: "hsl(var(--foreground))" }}
                   axisLine={{ stroke: "hsl(var(--border))" }}
                 />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: "hsl(var(--surface))",
+                    backgroundColor: "hsl(var(--card))",
+                    color: "hsl(var(--card-foreground))",
                     border: "1px solid hsl(var(--border))",
                     borderRadius: "12px",
                     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
                     fontFamily: "Inter, sans-serif",
                   }}
                 />
-                <Bar dataKey="volume" fill="#9AA3B2" opacity={0.5} radius={[2, 2, 0, 0]} />
+                <Bar dataKey="volume" fill="hsl(var(--muted-foreground))" opacity={0.6} radius={[2, 2, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>
