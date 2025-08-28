@@ -44,14 +44,37 @@
   --sidebar-border: #d9dbe1; /* Silver Gray sidebar border */
   --sidebar-ring: #29abe2; /* Cyan sidebar focus ring */
 
-  /* Added custom colors for specific sentiment states */
+  /* Enhanced color system for financial dashboard */
   --positive: #00c853; /* Green for bullish sentiment */
+  --positive-light: #4caf50; /* Lighter green for hover states */
+  --positive-dark: #388e3c; /* Darker green for active states */
+  
   --negative: #d50000; /* Red for bearish sentiment */
+  --negative-light: #f44336; /* Lighter red for hover states */
+  --negative-dark: #b71c1c; /* Darker red for active states */
+  
   --neutral: #ff9800; /* Orange for mixed sentiment */
+  --neutral-light: #ffc107; /* Lighter orange for hover states */
+  --neutral-dark: #f57c00; /* Darker orange for active states */
+  
   --highlight: #29abe2; /* Cyan for highlights and active states */
-  --chart-background: #f5f6fa; /* Light gray for chart backgrounds */
-  --footer-background: #2e2e38; /* Dark gray for footer */
-  --disclaimer-text: #cccccc; /* Light gray for disclaimer text */
+  --highlight-light: #64b5f6; /* Lighter cyan for hover states */
+  --highlight-dark: #1976d2; /* Darker cyan for active states */
+  
+  --chart-background: #f8fafc; /* Light gray for chart backgrounds */
+  --footer-background: #1e293b; /* Dark slate for footer */
+  --disclaimer-text: #94a3b8; /* Slate gray for disclaimer text */
+  
+  /* Status colors */
+  --success: var(--positive);
+  --warning: var(--neutral);
+  --error: var(--negative);
+  --info: var(--highlight);
+  
+  /* Interactive states */
+  --hover-overlay: rgba(255, 255, 255, 0.05);
+  --active-overlay: rgba(255, 255, 255, 0.1);
+  --disabled-overlay: rgba(0, 0, 0, 0.1);
 }
 
 .dark {
@@ -88,8 +111,30 @@
   --sidebar-border: #1e2a44; /* Darker sidebar border */
   --sidebar-ring: #29abe2; /* Cyan sidebar ring */
   --chart-background: #0f1b34; /* Darker chart background */
-  --footer-background: #2e2e38; /* Keep dark footer */
-  --disclaimer-text: #cccccc; /* Keep light disclaimer text */
+  --footer-background: #1e293b; /* Consistent dark slate */
+  --disclaimer-text: #94a3b8; /* Consistent slate gray */
+  
+  /* Enhanced color system for dark mode */
+  --positive: #4caf50; /* Slightly lighter green for better contrast */
+  --positive-light: #66bb6a; /* Lighter green for hover states */
+  --positive-dark: #2e7d32; /* Darker green for active states */
+  
+  --negative: #f44336; /* Slightly lighter red for better contrast */
+  --negative-light: #ef5350; /* Lighter red for hover states */
+  --negative-dark: #c62828; /* Darker red for active states */
+  
+  --neutral: #ffc107; /* Brighter orange for better contrast */
+  --neutral-light: #ffca28; /* Lighter orange for hover states */
+  --neutral-dark: #ff8f00; /* Darker orange for active states */
+  
+  --highlight: #29abe2; /* Keep cyan highlight */
+  --highlight-light: #64b5f6; /* Lighter cyan for hover states */
+  --highlight-dark: #1565c0; /* Darker cyan for active states */
+  
+  /* Interactive states for dark mode */
+  --hover-overlay: rgba(255, 255, 255, 0.08);
+  --active-overlay: rgba(255, 255, 255, 0.12);
+  --disabled-overlay: rgba(0, 0, 0, 0.2);
 }
 
 /* Updated font configuration to use Inter and Noto Sans JP as specified */
@@ -133,14 +178,29 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Added custom color tokens for sentiment-specific styling */
+  /* Enhanced custom color tokens for sentiment-specific styling */
   --color-positive: var(--positive);
+  --color-positive-light: var(--positive-light);
+  --color-positive-dark: var(--positive-dark);
   --color-negative: var(--negative);
+  --color-negative-light: var(--negative-light);
+  --color-negative-dark: var(--negative-dark);
   --color-neutral: var(--neutral);
+  --color-neutral-light: var(--neutral-light);
+  --color-neutral-dark: var(--neutral-dark);
   --color-highlight: var(--highlight);
+  --color-highlight-light: var(--highlight-light);
+  --color-highlight-dark: var(--highlight-dark);
   --color-chart-background: var(--chart-background);
   --color-footer-background: var(--footer-background);
   --color-disclaimer-text: var(--disclaimer-text);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+  --color-hover-overlay: var(--hover-overlay);
+  --color-active-overlay: var(--active-overlay);
+  --color-disabled-overlay: var(--disabled-overlay);
 }
 
 @layer base {
@@ -168,27 +228,171 @@
     @apply text-xs font-light; /* 12px, Light for disclaimers */
   }
 
-  /* Added animation classes for smooth transitions */
+  /* Enhanced animation classes for smooth transitions and interactions */
   .fade-in {
-    animation: fadeIn 0.6s ease-out;
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .slide-up {
+    animation: slideUp 0.7s ease-out;
+  }
+
+  .scale-in {
+    animation: scaleIn 0.5s ease-out;
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .dark .hover-lift:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
   }
 
   .glow-cyan {
-    box-shadow: 0 0 20px rgba(41, 171, 226, 0.2);
+    box-shadow: 0 0 20px rgba(41, 171, 226, 0.3);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .glow-cyan:hover {
+    box-shadow: 0 0 30px rgba(41, 171, 226, 0.5);
   }
 
   .soft-shadow {
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .enhanced-shadow {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  .glass-morphism {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dark .glass-morphism {
+    background: rgba(10, 18, 36, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .gradient-bg {
+    background: linear-gradient(135deg, rgba(29, 60, 120, 0.05) 0%, rgba(41, 171, 226, 0.05) 100%);
+  }
+
+  .dark .gradient-bg {
+    background: linear-gradient(135deg, rgba(10, 18, 36, 0.8) 0%, rgba(15, 27, 52, 0.6) 100%);
+  }
+
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .smooth-bounce {
+    animation: smoothBounce 0.6s ease-out;
+  }
+
+  /* Consistent color utility classes */
+  .text-positive { color: var(--positive) !important; }
+  .text-positive-light { color: var(--positive-light) !important; }
+  .text-positive-dark { color: var(--positive-dark) !important; }
+  .bg-positive { background-color: var(--positive) !important; }
+  .bg-positive-light { background-color: var(--positive-light) !important; }
+  .bg-positive-alpha { background-color: rgba(var(--positive), 0.1) !important; }
+  
+  .text-negative { color: var(--negative) !important; }
+  .text-negative-light { color: var(--negative-light) !important; }
+  .text-negative-dark { color: var(--negative-dark) !important; }
+  .bg-negative { background-color: var(--negative) !important; }
+  .bg-negative-light { background-color: var(--negative-light) !important; }
+  .bg-negative-alpha { background-color: rgba(var(--negative), 0.1) !important; }
+  
+  .text-neutral { color: var(--neutral) !important; }
+  .text-neutral-light { color: var(--neutral-light) !important; }
+  .text-neutral-dark { color: var(--neutral-dark) !important; }
+  .bg-neutral { background-color: var(--neutral) !important; }
+  .bg-neutral-light { background-color: var(--neutral-light) !important; }
+  .bg-neutral-alpha { background-color: rgba(var(--neutral), 0.1) !important; }
+  
+  .text-highlight { color: var(--highlight) !important; }
+  .text-highlight-light { color: var(--highlight-light) !important; }
+  .text-highlight-dark { color: var(--highlight-dark) !important; }
+  .bg-highlight { background-color: var(--highlight) !important; }
+  .bg-highlight-light { background-color: var(--highlight-light) !important; }
+  .bg-highlight-alpha { background-color: rgba(var(--highlight), 0.1) !important; }
+
+  /* Sentiment-specific gradient backgrounds */
+  .gradient-positive {
+    background: linear-gradient(135deg, var(--positive), var(--positive-light));
+  }
+  .gradient-negative {
+    background: linear-gradient(135deg, var(--negative), var(--negative-light));
+  }
+  .gradient-neutral {
+    background: linear-gradient(135deg, var(--neutral), var(--neutral-light));
+  }
+  .gradient-highlight {
+    background: linear-gradient(135deg, var(--highlight), var(--highlight-light));
   }
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(41, 171, 226, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(41, 171, 226, 0.6);
+  }
+}
+
+@keyframes smoothBounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
     transform: translateY(0);
   }
 }
