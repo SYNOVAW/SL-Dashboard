@@ -3,6 +3,7 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { signIn } from "next-auth/react"
 import { AuthCard } from "@/components/auth/auth-card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -35,15 +36,16 @@ export default function LoginPage() {
     setError("")
 
     try {
-      // Simulate login API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      // For demo purposes, accept any non-empty credentials
-      if (formData.email && formData.password) {
-        // In a real app, you would validate credentials here
-        router.push("/dashboard")
+      const res = await signIn("credentials", {
+        redirect: false,
+        email: formData.email,
+        password: formData.password,
+      })
+
+      if (res?.error) {
+        setError("Invalid credentials")
       } else {
-        setError("Please fill in all fields")
+        router.push("/dashboard")
       }
     } catch (err) {
       setError("Login failed. Please try again.")
@@ -55,9 +57,7 @@ export default function LoginPage() {
   const handleSocialLogin = async (provider: string) => {
     setIsLoading(true)
     try {
-      // Simulate social login
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      router.push("/dashboard")
+      await signIn(provider.toLowerCase(), { callbackUrl: "/dashboard" })
     } catch (err) {
       setError(`${provider} login failed. Please try again.`)
     } finally {

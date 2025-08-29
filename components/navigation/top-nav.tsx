@@ -97,7 +97,7 @@ export function TopNav({ onMenuToggle }: TopNavProps) {
               </svg>
             </div>
             <span className="font-semibold text-foreground">
-              FinancialAI
+              AI-Trader Jeo
             </span>
           </div>
         </div>
