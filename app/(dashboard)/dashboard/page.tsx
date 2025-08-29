@@ -5,6 +5,7 @@ import { AgentVotingPanel } from "@/components/agent-voting-panel"
 import { VisualDataLayer } from "@/components/visual-data-layer"
 import { InsightTabs } from "@/components/insight-tabs"
 import { UserSidebar } from "@/components/user-sidebar"
+import { KPISnapshot } from "@/components/kpi-snapshot"
 import { NewsTicker } from "@/components/professional/news-ticker"
 import { MarketIndices } from "@/components/professional/market-indices"
 import { KeyboardShortcuts } from "@/components/professional/keyboard-shortcuts"
@@ -83,6 +84,13 @@ export default function DashboardPage() {
           <div className="slide-up" style={{ animationDelay: "0.2s" }}>
             <ErrorBoundary>
               <AgentVotingPanel />
+            </ErrorBoundary>
+          </div>
+
+          {/* KPI Snapshot */}
+          <div className="slide-up" style={{ animationDelay: "0.3s" }}>
+            <ErrorBoundary>
+              <KPISnapshot />
             </ErrorBoundary>
           </div>
 

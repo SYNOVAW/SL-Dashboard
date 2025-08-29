@@ -22,15 +22,16 @@ export function SummaryZone({ isLoading = false, error, className }: SummaryZone
   // Mock data - in real app, this would come from props or API
   const marketSentiment: MarketSentiment = {
     overallSentiment: "neutral",
-    confidenceScore: 68,
+    confidenceScore: 70,
     suggestedAction: "hold", 
-    biasNote: "Mixed signals from earnings vs market conditions",
-    consensusStrength: 72,
+    biasNote: "エージェント間で意見が分岐、慎重な評価が必要",
+    consensusStrength: 62,
     volatilityIndex: 15.2,
     timestamp: new Date(),
     lastUpdated: new Date(Date.now() - 2 * 60 * 1000), // 2 minutes ago
-    dataSource: "Bloomberg Terminal",
-    confidence: 85
+    dataSource: "Multi-agent consensus",
+    confidence: 85,
+    conflictDetected: true // New field for agent disagreement
   }
 
   const dataSource: DataSourceInfo = {
@@ -96,13 +97,18 @@ export function SummaryZone({ isLoading = false, error, className }: SummaryZone
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="flex items-center gap-3 text-3xl font-bold text-card-foreground">
-                Market Overview
+                Summary Sentiment
                 <div className="p-2 rounded-full bg-[var(--highlight)]/10 glow-cyan">
                   <Clock className="h-6 w-6 text-[var(--highlight)]" />
                 </div>
+                {marketSentiment.conflictDetected && (
+                  <Badge variant="destructive" className="ml-2 text-xs px-2 py-1 bg-amber-500/10 text-amber-600 border-amber-500/30">
+                    ⚠ Conflict
+                  </Badge>
+                )}
               </CardTitle>
               <p className="text-lg text-muted-foreground mt-2">
-                Real-time AI sentiment analysis and market insights
+                マルチエージェント評価による市場センチメント分析
               </p>
             </div>
             <DataStatusIndicator 
