@@ -110,7 +110,7 @@ export function AdvancedStockChart({ symbol = "META", companyName = "Meta Platfo
           <div className="space-y-1 text-sm">
             <div className="flex justify-between gap-4">
               <span className="text-muted-foreground">Open:</span>
-              <span className="font-financial">${data.open.toFixed(2)}</span>
+              <span className="font-financial text-card-foreground">${data.open.toFixed(2)}</span>
             </div>
             <div className="flex justify-between gap-4">
               <span className="text-muted-foreground">High:</span>
@@ -122,21 +122,21 @@ export function AdvancedStockChart({ symbol = "META", companyName = "Meta Platfo
             </div>
             <div className="flex justify-between gap-4">
               <span className="text-muted-foreground">Close:</span>
-              <span className="font-financial font-semibold">${data.close.toFixed(2)}</span>
+              <span className="font-financial font-semibold text-card-foreground">${data.close.toFixed(2)}</span>
             </div>
             <div className="flex justify-between gap-4">
               <span className="text-muted-foreground">Volume:</span>
-              <span className="font-financial">{(data.volume / 1000000).toFixed(1)}M</span>
+              <span className="font-financial text-card-foreground">{(data.volume / 1000000).toFixed(1)}M</span>
             </div>
             {showMovingAverages && (
               <>
                 <div className="flex justify-between gap-4">
                   <span className="text-muted-foreground">SMA20:</span>
-                  <span className="font-financial">${data.sma20.toFixed(2)}</span>
+                  <span className="font-financial text-card-foreground">${data.sma20.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between gap-4">
                   <span className="text-muted-foreground">SMA50:</span>
-                  <span className="font-financial">${data.sma50.toFixed(2)}</span>
+                  <span className="font-financial text-card-foreground">${data.sma50.toFixed(2)}</span>
                 </div>
               </>
             )}
@@ -145,6 +145,28 @@ export function AdvancedStockChart({ symbol = "META", companyName = "Meta Platfo
       )
     }
     return null
+  }
+
+  // Custom volume bar shape component
+  const VolumeBar = (props: any) => {
+    const { payload, x, y, width, height } = props
+    if (!payload) return null
+
+    const { open, close } = payload
+    const isUp = close > open
+    const color = isUp ? "hsl(var(--positive))" : "hsl(var(--negative))"
+    
+    return (
+      <rect
+        x={x}
+        y={y}
+        width={width}
+        height={height}
+        fill={color}
+        opacity={0.6}
+        rx={1}
+      />
+    )
   }
 
   // Custom candlestick shape component
@@ -293,10 +315,10 @@ export function AdvancedStockChart({ symbol = "META", companyName = "Meta Platfo
 
       <CardContent className="space-y-6">
         {/* Main Chart */}
-        <div className="h-96 bg-[var(--chart-background)] rounded-xl p-4 border border-border/30">
+        <div className="h-96 bg-card/50 rounded-xl p-4 border border-border/30">
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart data={currentData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.5} />
               <XAxis
                 dataKey="time"
                 tick={{ fontSize: 12, fill: "hsl(var(--foreground))" }}
@@ -313,7 +335,7 @@ export function AdvancedStockChart({ symbol = "META", companyName = "Meta Platfo
                 <YAxis
                   yAxisId="volume"
                   orientation="left"
-                  tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }}
+                  tick={{ fontSize: 12, fill: "hsl(var(--foreground))" }}
                   axisLine={{ stroke: "hsl(var(--border))" }}
                   domain={[0, 'dataMax * 4']}
                 />
@@ -325,8 +347,7 @@ export function AdvancedStockChart({ symbol = "META", companyName = "Meta Platfo
                 <Bar
                   yAxisId="volume"
                   dataKey="volume"
-                  fill="hsl(var(--muted-foreground))"
-                  opacity={0.3}
+                  shape={<VolumeBar />}
                   radius={[1, 1, 0, 0]}
                 />
               )}
@@ -347,7 +368,7 @@ export function AdvancedStockChart({ symbol = "META", companyName = "Meta Platfo
                     yAxisId="price"
                     type="monotone"
                     dataKey="sma50"
-                    stroke="hsl(var(--neutral))"
+                    stroke="hsl(var(--muted-foreground))"
                     strokeWidth={2}
                     strokeDasharray="5 5"
                     dot={false}
@@ -381,14 +402,17 @@ export function AdvancedStockChart({ symbol = "META", companyName = "Meta Platfo
                 <span className="text-muted-foreground">SMA20</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-0.5 bg-[var(--neutral)] rounded-full" />
+                <div className="w-4 h-0.5 bg-muted-foreground rounded-full" />
                 <span className="text-muted-foreground">SMA50</span>
               </div>
             </>
           )}
           {showVolume && (
             <div className="flex items-center gap-2">
-              <div className="w-4 h-2 bg-muted-foreground opacity-30 rounded-sm" />
+              <div className="flex gap-1">
+                <div className="w-2 h-2 bg-[var(--positive)] opacity-60 rounded-sm" />
+                <div className="w-2 h-2 bg-[var(--negative)] opacity-60 rounded-sm" />
+              </div>
               <span className="text-muted-foreground">Volume</span>
             </div>
           )}
@@ -398,25 +422,25 @@ export function AdvancedStockChart({ symbol = "META", companyName = "Meta Platfo
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-border/30">
           <div className="text-center">
             <div className="text-sm text-muted-foreground">Day Range</div>
-            <div className="font-financial font-medium">
+            <div className="font-financial font-medium text-card-foreground">
               ${Math.min(...currentData.map(d => d.low)).toFixed(2)} - ${Math.max(...currentData.map(d => d.high)).toFixed(2)}
             </div>
           </div>
           <div className="text-center">
             <div className="text-sm text-muted-foreground">Volume</div>
-            <div className="font-financial font-medium">
+            <div className="font-financial font-medium text-card-foreground">
               {(currentData.reduce((sum, d) => sum + d.volume, 0) / 1000000).toFixed(1)}M
             </div>
           </div>
           <div className="text-center">
             <div className="text-sm text-muted-foreground">Avg Volume</div>
-            <div className="font-financial font-medium">
+            <div className="font-financial font-medium text-card-foreground">
               {(currentData.reduce((sum, d) => sum + d.volume, 0) / currentData.length / 1000000).toFixed(1)}M
             </div>
           </div>
           <div className="text-center">
             <div className="text-sm text-muted-foreground">Volatility</div>
-            <div className="font-financial font-medium">
+            <div className="font-financial font-medium text-card-foreground">
               {(Math.max(...currentData.map(d => d.high)) / Math.min(...currentData.map(d => d.low)) * 100 - 100).toFixed(1)}%
             </div>
           </div>
