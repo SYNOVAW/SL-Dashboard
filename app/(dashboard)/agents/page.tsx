@@ -53,7 +53,7 @@ export default function AgentsPage() {
       sentiment: "Negative",
       confidence: 72,
       lastUpdated: new Date(Date.now() - 2 * 60 * 1000),
-      reasoning: "ínâáó¿à1DMÈìóÉ™šnïı'ØD",
+      reasoning: "çŸ­æœŸã®ãƒ¢ãƒ¡ãƒ³ã‚¿ãƒ å¼±ã„ã€ä¸‹é™ãƒˆãƒ¬ãƒ³ãƒ‰ç¶™ç¶š",
       performance: {
         accuracy: 84.2,
         trades: 1247,
@@ -80,7 +80,7 @@ export default function AgentsPage() {
       sentiment: "Neutral",
       confidence: 68,
       lastUpdated: new Date(Date.now() - 5 * 60 * 1000),
-      reasoning: "1So„„NÍj‹¹L*âP™…an¶Á",
+      reasoning: "å ±é“ã¯åˆ†å²ã€ã‚„ã‚„æ…é‡ãªè¦‹æ–¹ãŒå„ªå‹¢",
       performance: {
         accuracy: 76.8,
         trades: 892,
@@ -107,8 +107,7 @@ export default function AgentsPage() {
       sentiment: "Positive",
       confidence: 85,
       lastUpdated: new Date(Date.now() - 1 * 60 * 1000),
-      reasoning: "ò
-û)Ê¿Õ¡óÀáó¿ëºo}wš",
+      reasoning: "å£²ä¸Šãƒ»ç´”åˆ©ç›Šå …èª¿ã€ãƒ•ã‚¡ãƒ³ãƒ€ãƒ¡ãƒ³ã‚¿ãƒ«ã‚ºè‰¯å¥½",
       performance: {
         accuracy: 89.1,
         trades: 2156,
@@ -135,7 +134,7 @@ export default function AgentsPage() {
       sentiment: "Positive",
       confidence: 78,
       lastUpdated: new Date(Date.now() - 8 * 60 * 1000),
-      reasoning: "î*¡sG +15%_¢•Ç¶o7'‹·D™š",
+      reasoning: "ç›®æ¨™æ ªä¾¡å¹³å‡ +15%ã€æ©Ÿé–¢æŠ•è³‡å®¶ã¯å¼·æ°—",
       performance: {
         accuracy: 81.5,
         trades: 1789,
