@@ -70,7 +70,7 @@ export default function DashboardPage() {
         <NewsTicker />
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-5 gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
         {/* Main Dashboard Content */}
         <div className="xl:col-span-3 space-y-8">
           {/* Summary Zone - Hero Section */}
@@ -116,17 +116,16 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Market Indices Sidebar */}
+        {/* Right Sidebar - Combined Market Indices and User Profile */}
         <div className="xl:col-span-1 space-y-6">
+          {/* Market Indices */}
           <div className="slide-up" style={{ animationDelay: "0.3s" }}>
             <ErrorBoundary>
               <MarketIndices />
             </ErrorBoundary>
           </div>
-        </div>
-
-        {/* Enhanced User Sidebar */}
-        <div className="xl:col-span-1">
+          
+          {/* User Sidebar */}
           <div className="slide-up" style={{ animationDelay: "0.4s" }}>
             <ErrorBoundary>
               <UserSidebar />
