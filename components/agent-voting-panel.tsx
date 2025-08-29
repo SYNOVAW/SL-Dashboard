@@ -8,6 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Brain, Newspaper, TrendingUp, Building, RefreshCw, MoreVertical } from "lucide-react"
 import { CircularGauge } from "@/components/ui/circular-gauge"
 import { getSentimentColorClasses, getFinancialBadgeClasses } from "@/lib/colors"
+import { AgentDetailModal } from "@/components/agent-detail-modal"
 
 interface AgentVote {
   name: string
@@ -22,6 +23,8 @@ export function AgentVotingPanel() {
   const [selectedAgent, setSelectedAgent] = useState<string | null>(null)
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [expandedView, setExpandedView] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
+  const [selectedAgentForModal, setSelectedAgentForModal] = useState<AgentVote | null>(null)
 
   const handleRefreshVotes = async () => {
     setIsRefreshing(true)
@@ -30,8 +33,9 @@ export function AgentVotingPanel() {
     setIsRefreshing(false)
   }
 
-  const handleAgentClick = (agentName: string) => {
-    setSelectedAgent(selectedAgent === agentName ? null : agentName)
+  const handleAgentClick = (agent: AgentVote) => {
+    setSelectedAgentForModal(agent)
+    setModalOpen(true)
   }
 
   const agentVotes: AgentVote[] = [
@@ -114,12 +118,8 @@ export function AgentVotingPanel() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div 
-                    className={`group p-6 rounded-2xl border bg-gradient-to-br from-card/90 to-card/70 hover-lift glass-morphism cursor-pointer transition-all duration-300 hover:shadow-lg scale-in ${
-                      selectedAgent === agent.name 
-                        ? 'border-[var(--highlight)]/50 bg-gradient-to-br from-[var(--highlight)]/5 to-[var(--highlight)]/10' 
-                        : 'border-border/20 hover:border-[var(--highlight)]/30'
-                    }`}
-                    onClick={() => handleAgentClick(agent.name)}
+                    className={`group p-6 rounded-2xl border bg-gradient-to-br from-card/90 to-card/70 hover-lift glass-morphism cursor-pointer transition-all duration-300 hover:shadow-lg scale-in border-border/20 hover:border-[var(--highlight)]/30`}
+                    onClick={() => handleAgentClick(agent)}
                   >
                     {/* エージェント名とアイコン */}
                     <div className="flex items-center gap-3 mb-4">
@@ -158,6 +158,9 @@ export function AgentVotingPanel() {
                   <div className="space-y-2">
                     <h5 className="font-semibold text-card-foreground">{agent.name} 詳細分析</h5>
                     <p className="text-sm text-muted-foreground leading-relaxed">{agent.reasoning}</p>
+                    <div className="text-xs text-[var(--highlight)] font-medium">
+                      クリックで詳細分析を表示 →
+                    </div>
                   </div>
                 </TooltipContent>
               </Tooltip>
@@ -191,6 +194,13 @@ export function AgentVotingPanel() {
             </div>
           </div>
         </div>
+
+        {/* Agent Detail Modal */}
+        <AgentDetailModal
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          agent={selectedAgentForModal}
+        />
       </CardContent>
     </Card>
   )
