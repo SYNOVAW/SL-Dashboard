@@ -3,11 +3,32 @@ import { AgentVotingPanel } from "@/components/agent-voting-panel"
 import { VisualDataLayer } from "@/components/visual-data-layer"
 import { InsightTabs } from "@/components/insight-tabs"
 import { UserSidebar } from "@/components/user-sidebar"
+import { NewsTicker } from "@/components/professional/news-ticker"
+import { MarketIndices } from "@/components/professional/market-indices"
+import { KeyboardShortcuts } from "@/components/professional/keyboard-shortcuts"
+import { ErrorBoundary } from "@/components/professional/error-boundary"
+import { IntegrationTest } from "@/components/professional/integration-test"
 import { TrendingUp, Clock, Brain } from "lucide-react"
 
 export default function DashboardPage() {
+  const handleRefreshData = () => {
+    // In a real app, this would trigger data refresh
+    window.location.reload()
+  }
+
+  const handleToggleTheme = () => {
+    document.documentElement.classList.toggle('dark')
+  }
+
+  const handleOpenSearch = () => {
+    // Focus search input or open search modal
+    const searchInput = document.querySelector('input[type="search"]') as HTMLInputElement
+    searchInput?.focus()
+  }
+
   return (
-    <div className="space-y-8">
+    <ErrorBoundary>
+      <div className="space-y-8">
       {/* Enhanced Header */}
       <header className="fade-in">
         <div className="flex items-center gap-4 mb-6">
@@ -41,37 +62,76 @@ export default function DashboardPage() {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      {/* News Ticker */}
+      <div className="fade-in">
+        <NewsTicker />
+      </div>
+
+      <div className="grid grid-cols-1 xl:grid-cols-5 gap-8">
         {/* Main Dashboard Content */}
-        <div className="lg:col-span-3 space-y-8">
+        <div className="xl:col-span-3 space-y-8">
           {/* Summary Zone - Hero Section */}
           <div className="slide-up">
-            <SummaryZone />
+            <ErrorBoundary>
+              <SummaryZone />
+            </ErrorBoundary>
           </div>
 
           {/* Agent Voting Panel */}
           <div className="slide-up" style={{ animationDelay: "0.2s" }}>
-            <AgentVotingPanel />
+            <ErrorBoundary>
+              <AgentVotingPanel />
+            </ErrorBoundary>
           </div>
 
           {/* Visual Data Layer */}
           <div className="slide-up" style={{ animationDelay: "0.4s" }}>
-            <VisualDataLayer />
+            <ErrorBoundary>
+              <VisualDataLayer />
+            </ErrorBoundary>
           </div>
 
           {/* Insight Tabs */}
           <div className="slide-up" style={{ animationDelay: "0.6s" }}>
-            <InsightTabs />
+            <ErrorBoundary>
+              <InsightTabs />
+            </ErrorBoundary>
+          </div>
+          
+          {/* Integration Test - Remove in production */}
+          <div className="slide-up" style={{ animationDelay: "0.8s" }}>
+            <ErrorBoundary>
+              <IntegrationTest />
+            </ErrorBoundary>
           </div>
         </div>
 
-        {/* Enhanced Sidebar */}
-        <div className="lg:col-span-1">
+        {/* Market Indices Sidebar */}
+        <div className="xl:col-span-1 space-y-6">
           <div className="slide-up" style={{ animationDelay: "0.3s" }}>
-            <UserSidebar />
+            <ErrorBoundary>
+              <MarketIndices />
+            </ErrorBoundary>
+          </div>
+        </div>
+
+        {/* Enhanced User Sidebar */}
+        <div className="xl:col-span-1">
+          <div className="slide-up" style={{ animationDelay: "0.4s" }}>
+            <ErrorBoundary>
+              <UserSidebar />
+            </ErrorBoundary>
           </div>
         </div>
       </div>
+      
+      {/* Professional Keyboard Shortcuts */}
+      <KeyboardShortcuts
+        onRefreshData={handleRefreshData}
+        onToggleTheme={handleToggleTheme}
+        onOpenSearch={handleOpenSearch}
+      />
     </div>
+    </ErrorBoundary>
   )
 }
