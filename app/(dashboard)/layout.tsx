@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import { TopNav } from "@/components/navigation/top-nav"
 import { NavSidebar } from "@/components/navigation/nav-sidebar"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { useMobile } from "@/hooks/use-mobile"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -12,7 +12,7 @@ interface DashboardLayoutProps {
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const isMobile = useMobile()
+  const isMobile = useIsMobile()
 
   return (
     <div className="h-screen flex flex-col bg-background">

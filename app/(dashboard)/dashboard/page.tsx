@@ -1,3 +1,5 @@
+"use client"
+
 import { SummaryZone } from "@/components/summary-zone"
 import { AgentVotingPanel } from "@/components/agent-voting-panel"
 import { VisualDataLayer } from "@/components/visual-data-layer"

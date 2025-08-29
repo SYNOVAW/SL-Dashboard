@@ -14,14 +14,14 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useMobile } from "@/hooks/use-mobile"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 interface TopNavProps {
   onMenuToggle?: () => void
 }
 
 export function TopNav({ onMenuToggle }: TopNavProps) {
-  const isMobile = useMobile()
+  const isMobile = useIsMobile()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
