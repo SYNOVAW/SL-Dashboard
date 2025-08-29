@@ -3,15 +3,37 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts"
+import { useState } from "react"
 
-const priceData = [
-  { date: "2025-01", price: 580, sma20: 575, sma50: 570, volume: 1200000 },
-  { date: "2025-02", price: 595, sma20: 585, sma50: 575, volume: 1500000 },
-  { date: "2025-03", price: 610, sma20: 600, sma50: 585, volume: 1800000 },
-  { date: "2025-04", price: 625, sma20: 615, sma50: 600, volume: 1600000 },
-  { date: "2025-05", price: 640, sma20: 630, sma50: 615, volume: 2000000 },
-  { date: "2025-06", price: 635, sma20: 635, sma50: 625, volume: 1700000 },
-]
+const priceDataSets = {
+  "1M": [
+    { date: "Week 1", price: 620, sma20: 615, sma50: 610, volume: 1100000 },
+    { date: "Week 2", price: 625, sma20: 620, sma50: 615, volume: 1300000 },
+    { date: "Week 3", price: 630, sma20: 625, sma50: 620, volume: 1200000 },
+    { date: "Week 4", price: 635, sma20: 630, sma50: 625, volume: 1400000 },
+  ],
+  "3M": [
+    { date: "2025-04", price: 600, sma20: 595, sma50: 590, volume: 1500000 },
+    { date: "2025-05", price: 620, sma20: 610, sma50: 605, volume: 1700000 },
+    { date: "2025-06", price: 635, sma20: 625, sma50: 615, volume: 1400000 },
+  ],
+  "6M": [
+    { date: "2025-01", price: 580, sma20: 575, sma50: 570, volume: 1200000 },
+    { date: "2025-02", price: 595, sma20: 585, sma50: 575, volume: 1500000 },
+    { date: "2025-03", price: 610, sma20: 600, sma50: 585, volume: 1800000 },
+    { date: "2025-04", price: 625, sma20: 615, sma50: 600, volume: 1600000 },
+    { date: "2025-05", price: 640, sma20: 630, sma50: 615, volume: 2000000 },
+    { date: "2025-06", price: 635, sma20: 635, sma50: 625, volume: 1700000 },
+  ],
+  "1Y": [
+    { date: "Q1 2024", price: 520, sma20: 515, sma50: 510, volume: 1000000 },
+    { date: "Q2 2024", price: 540, sma20: 535, sma50: 525, volume: 1200000 },
+    { date: "Q3 2024", price: 560, sma20: 555, sma50: 545, volume: 1400000 },
+    { date: "Q4 2024", price: 580, sma20: 575, sma50: 565, volume: 1600000 },
+    { date: "Q1 2025", price: 610, sma20: 605, sma50: 590, volume: 1800000 },
+    { date: "Q2 2025", price: 635, sma20: 630, sma50: 615, volume: 1700000 },
+  ]
+}
 
 const sentimentData = [
   { date: "2025-01", sentiment: 0.2 },
@@ -24,6 +46,18 @@ const sentimentData = [
 
 export function VisualDataLayer() {
   const timeframes = ["1M", "3M", "6M", "1Y"]
+  const [selectedTimeframe, setSelectedTimeframe] = useState<keyof typeof priceDataSets>("6M")
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleTimeframeChange = async (timeframe: keyof typeof priceDataSets) => {
+    setIsLoading(true)
+    // Simulate data loading
+    await new Promise(resolve => setTimeout(resolve, 300))
+    setSelectedTimeframe(timeframe)
+    setIsLoading(false)
+  }
+
+  const currentPriceData = priceDataSets[selectedTimeframe]
 
   return (
     <Card className="w-full bg-card border-border/50 rounded-xl soft-shadow">
@@ -34,15 +68,17 @@ export function VisualDataLayer() {
             {timeframes.map((timeframe) => (
               <Button
                 key={timeframe}
-                variant={timeframe === "6M" ? "default" : "outline"}
+                variant={timeframe === selectedTimeframe ? "default" : "outline"}
                 size="sm"
+                onClick={() => handleTimeframeChange(timeframe as keyof typeof priceDataSets)}
+                disabled={isLoading}
                 className={
-                  timeframe === "6M"
-                    ? "bg-primary hover:bg-primary/90 text-primary-foreground font-medium"
-                    : "border-border/50 hover:bg-accent/50 text-muted-foreground hover:text-foreground font-medium"
+                  timeframe === selectedTimeframe
+                    ? "bg-primary hover:bg-primary/90 text-primary-foreground font-medium transition-all duration-200"
+                    : "border-border/50 hover:bg-accent/50 text-muted-foreground hover:text-foreground font-medium transition-all duration-200"
                 }
               >
-                {timeframe}
+                {isLoading && timeframe === selectedTimeframe ? "..." : timeframe}
               </Button>
             ))}
           </div>
@@ -70,7 +106,7 @@ export function VisualDataLayer() {
           </div>
           <div className="h-64 bg-[var(--chart-background)] rounded-lg p-4 border border-border/30">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={priceData}>
+              <LineChart data={currentPriceData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
                 <XAxis
                   dataKey="date"
@@ -116,7 +152,7 @@ export function VisualDataLayer() {
           <h3 className="font-semibold text-card-foreground mb-6 font-inter">Trading Volume</h3>
           <div className="h-32 bg-[var(--chart-background)] rounded-lg p-4 border border-border/30">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={priceData}>
+              <BarChart data={currentPriceData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.3} />
                 <XAxis
                   dataKey="date"

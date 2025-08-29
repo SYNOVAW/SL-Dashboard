@@ -1,3 +1,5 @@
+"use client"
+import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -7,6 +9,18 @@ import { TrendingUp, Shield, Clock, Settings, User, Bell } from "lucide-react"
 import { getFinancialBadgeClasses } from "@/lib/colors"
 
 export function UserSidebar() {
+  const [selectedInvestorType, setSelectedInvestorType] = useState("growth")
+  const [notificationsEnabled, setNotificationsEnabled] = useState(true)
+
+  const handleSettingsClick = () => {
+    console.log("Settings clicked")
+    // Navigate to settings page
+  }
+
+  const handleNotificationsToggle = () => {
+    setNotificationsEnabled(!notificationsEnabled)
+    console.log("Notifications toggled:", !notificationsEnabled)
+  }
   const investorTypes = [
     {
       id: "growth",
@@ -75,7 +89,7 @@ export function UserSidebar() {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <RadioGroup defaultValue="growth" className="space-y-4">
+          <RadioGroup value={selectedInvestorType} onValueChange={setSelectedInvestorType} className="space-y-4">
             {investorTypes.map((type) => (
               <div key={type.id} className="group p-4 rounded-xl bg-muted/10 hover:bg-muted/20 border border-border/10 hover:border-[var(--highlight)]/30 transition-all duration-300 hover-lift cursor-pointer">
                 <div className="flex items-start space-x-4">
@@ -131,13 +145,25 @@ export function UserSidebar() {
           <CardTitle className="text-lg font-bold text-card-foreground">Quick Actions</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <Button variant="outline" className="w-full justify-start bg-transparent hover:bg-[var(--highlight)]/10 hover:border-[var(--highlight)]/30 hover:text-[var(--highlight)] transition-all duration-300 hover-lift font-medium">
+          <Button 
+            variant="outline" 
+            onClick={() => console.log("Export Analysis clicked")}
+            className="w-full justify-start bg-transparent hover:bg-[var(--highlight)]/10 hover:border-[var(--highlight)]/30 hover:text-[var(--highlight)] transition-all duration-300 hover-lift font-medium"
+          >
             Export Analysis
           </Button>
-          <Button variant="outline" className="w-full justify-start bg-transparent hover:bg-[var(--highlight)]/10 hover:border-[var(--highlight)]/30 hover:text-[var(--highlight)] transition-all duration-300 hover-lift font-medium">
+          <Button 
+            variant="outline" 
+            onClick={() => console.log("Set Price Alerts clicked")}
+            className="w-full justify-start bg-transparent hover:bg-[var(--highlight)]/10 hover:border-[var(--highlight)]/30 hover:text-[var(--highlight)] transition-all duration-300 hover-lift font-medium"
+          >
             Set Price Alerts
           </Button>
-          <Button variant="outline" className="w-full justify-start bg-transparent hover:bg-[var(--highlight)]/10 hover:border-[var(--highlight)]/30 hover:text-[var(--highlight)] transition-all duration-300 hover-lift font-medium">
+          <Button 
+            variant="outline" 
+            onClick={() => console.log("View Full Report clicked")}
+            className="w-full justify-start bg-transparent hover:bg-[var(--highlight)]/10 hover:border-[var(--highlight)]/30 hover:text-[var(--highlight)] transition-all duration-300 hover-lift font-medium"
+          >
             View Full Report
           </Button>
         </CardContent>

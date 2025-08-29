@@ -1,8 +1,11 @@
+"use client"
 import type React from "react"
+import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
-import { Brain, Newspaper, TrendingUp, Building } from "lucide-react"
+import { Brain, Newspaper, TrendingUp, Building, RefreshCw, MoreVertical } from "lucide-react"
 import { CircularGauge } from "@/components/ui/circular-gauge"
 import { getSentimentColorClasses, getFinancialBadgeClasses } from "@/lib/colors"
 
@@ -16,6 +19,21 @@ interface AgentVote {
 }
 
 export function AgentVotingPanel() {
+  const [selectedAgent, setSelectedAgent] = useState<string | null>(null)
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [expandedView, setExpandedView] = useState(false)
+
+  const handleRefreshVotes = async () => {
+    setIsRefreshing(true)
+    // Simulate refresh
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    setIsRefreshing(false)
+  }
+
+  const handleAgentClick = (agentName: string) => {
+    setSelectedAgent(selectedAgent === agentName ? null : agentName)
+  }
+
   const agentVotes: AgentVote[] = [
     {
       name: "RL Agent",
@@ -55,15 +73,37 @@ export function AgentVotingPanel() {
   return (
     <Card className="w-full bg-card border-border/20 enhanced-shadow rounded-2xl hover-lift slide-up gradient-bg">
       <CardHeader className="pb-6">
-        <CardTitle className="flex items-center gap-3 text-2xl font-bold text-card-foreground">
-          <div className="p-2 rounded-full bg-gradient-to-br from-[var(--highlight)]/20 to-[var(--highlight)]/10 glow-cyan">
-            <Brain className="h-5 w-5 text-[var(--highlight)]" />
+        <div className="flex items-center justify-between">
+          <CardTitle className="flex items-center gap-3 text-2xl font-bold text-card-foreground">
+            <div className="p-2 rounded-full bg-gradient-to-br from-[var(--highlight)]/20 to-[var(--highlight)]/10 glow-cyan">
+              <Brain className="h-5 w-5 text-[var(--highlight)]" />
+            </div>
+            Agent Voting Panel
+            <Badge variant="outline" className="bg-gradient-to-r from-[var(--highlight)]/15 to-[var(--highlight)]/10 text-[var(--highlight)] border-[var(--highlight)]/30 px-4 py-2 font-semibold hover-lift pulse-glow">
+              4 Agents Active
+            </Badge>
+          </CardTitle>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRefreshVotes}
+              disabled={isRefreshing}
+              className="border-border/50 hover:bg-accent/50 transition-all duration-200"
+            >
+              <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
+              {isRefreshing ? 'Updating...' : 'Refresh'}
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setExpandedView(!expandedView)}
+              className="border-border/50 hover:bg-accent/50 transition-all duration-200"
+            >
+              <MoreVertical className="h-4 w-4" />
+            </Button>
           </div>
-          Agent Voting Panel
-          <Badge variant="outline" className="ml-auto bg-gradient-to-r from-[var(--highlight)]/15 to-[var(--highlight)]/10 text-[var(--highlight)] border-[var(--highlight)]/30 px-4 py-2 font-semibold hover-lift pulse-glow">
-            4 Agents Active
-          </Badge>
-        </CardTitle>
+        </div>
         <p className="text-base text-muted-foreground mt-2">Real-time consensus from AI trading agents</p>
       </CardHeader>
       <CardContent>
@@ -72,7 +112,14 @@ export function AgentVotingPanel() {
             <TooltipProvider key={index}>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <div className="group space-y-4 p-6 rounded-2xl border border-border/20 bg-gradient-to-br from-card/80 to-card/60 hover-lift glass-morphism cursor-pointer transition-all duration-300 hover:border-[var(--highlight)]/30 hover:shadow-lg scale-in">
+                  <div 
+                    className={`group space-y-4 p-6 rounded-2xl border bg-gradient-to-br from-card/80 to-card/60 hover-lift glass-morphism cursor-pointer transition-all duration-300 hover:shadow-lg scale-in ${
+                      selectedAgent === agent.name 
+                        ? 'border-[var(--highlight)]/50 bg-gradient-to-br from-[var(--highlight)]/5 to-[var(--highlight)]/10' 
+                        : 'border-border/20 hover:border-[var(--highlight)]/30'
+                    }`}
+                    onClick={() => handleAgentClick(agent.name)}
+                  >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">
                         <div className="p-3 rounded-xl bg-gradient-to-br from-[var(--highlight)]/15 to-[var(--highlight)]/10 text-[var(--highlight)] group-hover:glow-cyan transition-all duration-300 group-hover:scale-110">

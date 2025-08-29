@@ -1,3 +1,5 @@
+"use client"
+import { useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
@@ -5,6 +7,21 @@ import { Separator } from "@/components/ui/separator"
 import { Newspaper, TrendingUp, Target, MessageSquare, ExternalLink, Calendar, DollarSign } from "lucide-react"
 
 export function InsightTabs() {
+  const [activeTab, setActiveTab] = useState("news")
+  const [selectedNewsItem, setSelectedNewsItem] = useState<number | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleTabChange = async (tab: string) => {
+    setIsLoading(true)
+    setActiveTab(tab)
+    // Simulate loading
+    await new Promise(resolve => setTimeout(resolve, 200))
+    setIsLoading(false)
+  }
+
+  const handleNewsClick = (index: number) => {
+    setSelectedNewsItem(selectedNewsItem === index ? null : index)
+  }
   const newsItems = [
     {
       title: "Q4 Earnings Beat Expectations",
@@ -64,30 +81,50 @@ export function InsightTabs() {
         <CardTitle>Detailed Analysis</CardTitle>
       </CardHeader>
       <CardContent>
-        <Tabs defaultValue="news" className="w-full">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="news" className="flex items-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8">
+            <TabsTrigger 
+              value="news" 
+              className="flex items-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8 transition-all duration-200"
+            >
               <Newspaper className="h-4 w-4" />
-              News
+              {isLoading && activeTab === "news" ? "Loading..." : "News"}
             </TabsTrigger>
-            <TabsTrigger value="financial" className="flex items-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8">
+            <TabsTrigger 
+              value="financial" 
+              className="flex items-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8 transition-all duration-200"
+            >
               <TrendingUp className="h-4 w-4" />
-              Financial
+              {isLoading && activeTab === "financial" ? "Loading..." : "Financial"}
             </TabsTrigger>
-            <TabsTrigger value="forecasts" className="flex items-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8">
+            <TabsTrigger 
+              value="forecasts" 
+              className="flex items-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8 transition-all duration-200"
+            >
               <Target className="h-4 w-4" />
-              Forecasts
+              {isLoading && activeTab === "forecasts" ? "Loading..." : "Forecasts"}
             </TabsTrigger>
-            <TabsTrigger value="debate" className="flex items-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8">
+            <TabsTrigger 
+              value="debate" 
+              className="flex items-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8 transition-all duration-200"
+            >
               <MessageSquare className="h-4 w-4" />
-              Agent Debate
+              {isLoading && activeTab === "debate" ? "Loading..." : "Agent Debate"}
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="news" className="space-y-4">
             <div className="space-y-4">
               {newsItems.map((item, index) => (
-                <div key={index} className="p-4 border border-border rounded-lg">
+                <div 
+                  key={index} 
+                  className={`p-4 border rounded-lg cursor-pointer transition-all duration-200 hover:shadow-md ${
+                    selectedNewsItem === index 
+                      ? 'border-[var(--accent)]/50 bg-[var(--accent)]/5' 
+                      : 'border-border hover:border-[var(--accent)]/30'
+                  }`}
+                  onClick={() => handleNewsClick(index)}
+                >
                   <div className="flex items-start justify-between mb-2">
                     <h4 className="font-medium text-card-foreground">{item.title}</h4>
                     <div className="flex items-center gap-2">

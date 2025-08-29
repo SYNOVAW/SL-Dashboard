@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import { Bell, Search, Settings, User } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -22,6 +22,35 @@ interface TopNavProps {
 
 export function TopNav({ onMenuToggle }: TopNavProps) {
   const isMobile = useIsMobile()
+  const [searchQuery, setSearchQuery] = useState("")
+  const [notificationCount, setNotificationCount] = useState(3)
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchQuery.trim()) {
+      console.log("Searching for:", searchQuery)
+      // Implement search functionality
+    }
+  }
+
+  const handleProfileClick = () => {
+    console.log("Profile clicked")
+    // Implement profile navigation
+  }
+
+  const handleSettingsClick = () => {
+    console.log("Settings clicked") 
+    // Implement settings navigation
+  }
+
+  const handleLogout = () => {
+    console.log("Logout clicked")
+    // Implement logout functionality
+  }
+
+  const clearNotifications = () => {
+    setNotificationCount(0)
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -75,15 +104,17 @@ export function TopNav({ onMenuToggle }: TopNavProps) {
 
         {/* Center section - Search (hidden on mobile) */}
         {!isMobile && (
-          <div className="flex-1 max-w-md mx-8">
+          <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md mx-8">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search stocks, news, or reports..."
                 className="pl-10 bg-muted/50"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-          </div>
+          </form>
         )}
 
         {/* Right section - Actions and user menu */}
@@ -100,12 +131,14 @@ export function TopNav({ onMenuToggle }: TopNavProps) {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="sm" className="relative">
                 <Bell className="h-5 w-5" />
-                <Badge 
-                  className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
-                  variant="destructive"
-                >
-                  3
-                </Badge>
+                {notificationCount > 0 && (
+                  <Badge 
+                    className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
+                    variant="destructive"
+                  >
+                    {notificationCount}
+                  </Badge>
+                )}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-80">
@@ -158,16 +191,16 @@ export function TopNav({ onMenuToggle }: TopNavProps) {
                 </div>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleProfileClick}>
                 <User className="mr-2 h-4 w-4" />
                 Profile
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleSettingsClick}>
                 <Settings className="mr-2 h-4 w-4" />
                 Settings
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-destructive">
+              <DropdownMenuItem onClick={handleLogout} className="text-destructive">
                 Log out
               </DropdownMenuItem>
             </DropdownMenuContent>
