@@ -10,7 +10,6 @@ import { NewsTicker } from "@/components/professional/news-ticker"
 import { MarketIndices } from "@/components/professional/market-indices"
 import { KeyboardShortcuts } from "@/components/professional/keyboard-shortcuts"
 import { ErrorBoundary } from "@/components/professional/error-boundary"
-import { IntegrationTest } from "@/components/professional/integration-test"
 import { AdvancedStockChart } from "@/components/charts/advanced-stock-chart"
 import { MultiAgentAnalysisPanel } from "@/components/analysis/multi-agent-panel"
 import { StockAnalysisCard } from "@/components/analysis/stock-analysis-card"
@@ -132,12 +131,6 @@ export default function DashboardPage() {
             </ErrorBoundary>
           </div>
           
-          {/* Integration Test - Remove in production */}
-          <div className="slide-up" style={{ animationDelay: "0.9s" }}>
-            <ErrorBoundary>
-              <IntegrationTest />
-            </ErrorBoundary>
-          </div>
         </div>
 
         {/* Right Sidebar - Combined Market Indices and User Profile */}
@@ -153,7 +146,7 @@ export default function DashboardPage() {
           <div className="slide-up" style={{ animationDelay: "0.4s" }}>
             <ErrorBoundary>
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-card-foreground mb-4">Quick Analysis</h3>
+                <h3 className="text-lg font-semibold text-card-foreground mb-4 text-center">Quick Analysis</h3>
                 <StockAnalysisCard 
                   compact={true}
                   stockData={{

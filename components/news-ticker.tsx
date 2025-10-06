@@ -141,7 +141,7 @@ export function NewsTicker() {
                 <Newspaper className="h-5 w-5 text-[var(--highlight)]" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-card-foreground">Market News</h3>
+                <h3 className="text-lg font-semibold text-card-foreground text-center">Market News</h3>
                 <p className="text-sm text-muted-foreground">Real-time financial news feed</p>
               </div>
             </div>

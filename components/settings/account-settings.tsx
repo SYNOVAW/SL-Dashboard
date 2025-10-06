@@ -127,7 +127,7 @@ export function AccountSettings() {
 
               {/* Contact Information */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 text-center">
                   <Mail className="h-4 w-4" />
                   Contact Information
                 </h3>
@@ -162,7 +162,7 @@ export function AccountSettings() {
 
               {/* Address Information */}
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
+                <h3 className="text-lg font-semibold text-foreground flex items-center gap-2 text-center">
                   <MapPin className="h-4 w-4" />
                   Address Information
                 </h3>

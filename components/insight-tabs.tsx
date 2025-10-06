@@ -78,35 +78,35 @@ export function InsightTabs() {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Detailed Analysis</CardTitle>
+        <CardTitle className="text-center">Detailed Analysis</CardTitle>
       </CardHeader>
       <CardContent>
         <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-4 justify-items-center">
             <TabsTrigger 
               value="news" 
-              className="flex items-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8 transition-all duration-200"
+              className="flex items-center justify-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8 transition-all duration-200"
             >
               <Newspaper className="h-4 w-4" />
               {isLoading && activeTab === "news" ? "Loading..." : "News"}
             </TabsTrigger>
             <TabsTrigger 
               value="financial" 
-              className="flex items-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8 transition-all duration-200"
+              className="flex items-center justify-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8 transition-all duration-200"
             >
               <TrendingUp className="h-4 w-4" />
               {isLoading && activeTab === "financial" ? "Loading..." : "Financial"}
             </TabsTrigger>
             <TabsTrigger 
               value="forecasts" 
-              className="flex items-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8 transition-all duration-200"
+              className="flex items-center justify-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8 transition-all duration-200"
             >
               <Target className="h-4 w-4" />
               {isLoading && activeTab === "forecasts" ? "Loading..." : "Forecasts"}
             </TabsTrigger>
             <TabsTrigger 
               value="debate" 
-              className="flex items-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8 transition-all duration-200"
+              className="flex items-center justify-center gap-2 data-[state=active]:text-[var(--accent)] data-[state=active]:font-semibold data-[state=active]:underline underline-offset-8 transition-all duration-200"
             >
               <MessageSquare className="h-4 w-4" />
               {isLoading && activeTab === "debate" ? "Loading..." : "Agent Debate"}
